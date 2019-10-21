@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modelo de IA usando LSTM para gerar trecho de música sertaneja">
+    <meta name="keywords" content="lstm generate text, ai text, model lstm text, ai music generate">
+    <meta name="author" content="catlangos">
+    <link rel="icon" href="../static/images/brain.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../static/images/brain.svg" type="image/x-icon" />
+    <title>LSTM - Compositor</title>
+
+    <!--Google font-->
+    <link href="../static/assets/fonts/fonts.googleapis.com/css6ea3.css?family=Open+Sans:400,600,700,800"
+        rel="stylesheet">
+    <link href="../static/assets/fonts/fonts.googleapis.com/css1087.css?family=Raleway:300,400,500,600,700"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/fontawesome.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/responsive.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="page-body-wrapper">
+            <div class="page-body">
+                <!-- Container-fluid starts -->
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h3>Compositor
+                                    <small>Modelo treinado usando LSTM</small>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid Ends -->
+
+                <!-- Container-fluid starts -->
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-center">
+                        <div class="row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Como será a sua música?</h5>
+                                    <span>O <b>compositor</b> precisa saber um pouco mais!</span>
+                                </div>
+                                <form class="form theme-form">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="inicioMusica" hidden>Início música:</label>
+                                                    <textarea class="form-control" placeholder="Comece a música..."
+                                                        id="inicioMusica" rows="3" style="height: 117px;"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label for="qtdPalavras">Quantidade de palavras:</label>
+                                                    <select class="form-control digits" id="qtdPalavras">
+                                                        <option>8</option>
+                                                        <option>16</option>
+                                                        <option>32</option>
+                                                        <option>64</option>
+                                                        <option>128</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="card-footer text-center">
+                                    <button type="submit" class="btn btn-square btn-outline-secondary btn-lg">Gerar Composição!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Container-fluid starts -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- latest jquery-->
+    <script src="../static/assets/js/jquery-3.2.1.min.js"></script>
+
+    <!-- Bootstrap js-->
+    <script src="../static/assets/js/bootstrap/popper.min.js"></script>
+    <script src="../static/assets/js/bootstrap/bootstrap.js"></script>
+
+
+    <!-- Theme js-->
+    <!-- <script src="../static/assets/js/script.js" ></script> -->
+    <!-- <script src="../static/assets/js/theme-customizer/customizer.js"></script> -->
+</body>
+
+</html>

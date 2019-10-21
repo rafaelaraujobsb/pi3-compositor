@@ -1,0 +1,53 @@
+MIN_FREQ: 50
+Vocab.: 1670
+Seq. de palavras: 10
+Quantidade de frases: 283847
+CONF: 'sigmoid', dropout=0.2, unidades=128, saida=1024 adamax
+Epochs: 83
+accuracy: 0.5672
+val_accuracy: 0.4115
+Tempo: 0:51:36.153681
+=================
+MIN_FREQ: 20
+Vocab.: 3375
+Seq. de palavras: 6
+Quantidade de frases: 596778
+CONF: 'softmax', dropout=0.4, unidades=128, saida=1024 adamax
+Epochs: 178
+accuracy: 0.5808
+val_accuracy: 0.4235
+Tempo: 2:59:50.823656
+arquivo: teste2
+=================
+MIN_FREQ: 16
+Vocab.: 3987
+Seq. de palavras: 4
+Quantidade de frases: 716492
+CONF: 'softmax', dropout=0.6, unidades=256, saida=512 adam
+Epochs: 73
+accuracy: 0.4344
+val_accuracy: 0.3853
+Tempo: 
+arquivo: teste3
+=================
+MIN_FREQ: 16
+Vocab.: 3987
+Seq. de palavras: 4
+Quantidade de frases: 716492
+CONF: 'softmax', dropout=0.6, unidades=256, saida=512 adam
+Epochs: 73
+accuracy: 0.4344
+val_accuracy: 0.3853
+Tempo: 
+arquivo: teste4
+=================
+MIN_FREQ: 10
+Vocab.: 5610
+Seq. de palavras: 5
+Quantidade de frases: 752462
+CONF: ''softmax', dropout=0.2, unidades=128, saida=512 adamax
+Epochs: 300
+accuracy: 0.7389
+val_accuracy: 0.4541
+Tempo: 4:44:49.640852
+arquivo: teste5
