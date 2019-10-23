@@ -21,8 +21,8 @@ def atualizar_frase(id_frase, curador, voto):
     dados = {'status': voto}
 
     if voto == 1:
-        dados['votos'] = {'$inc': 1}
+        dados['$inc'] = {'votos': 1}
 
     db = Database()
     db.update_document('curadoria', {'_id': id_frase}, dados)
-    db.update_document('curador', {'_id': curador}, {'curado': {'$inc': 1}})
+    db.update_document('curador', {'_id': curador}, {'$inc': {'curado': 1}})
