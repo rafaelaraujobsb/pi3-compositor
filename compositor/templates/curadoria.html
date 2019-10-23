@@ -81,13 +81,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <p style="font-size: 18px" id="frase">hoje eu vou parar na gaiola</p>
+                                        <p style="font-size: 18px" id="frase" value=""></p>
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <button onclick="proxima_frase()" type="submit" class="btn btn-square btn-success" style="margin: 5px">
+                                    <button onclick="salvar_curadoria(1)" type="submit" class="btn btn-square btn-success" style="margin: 5px">
                                         <i class="fa fa-check"></i> Válido</button>
-                                    <button onclick="proxima_frase()" type="submit" class="btn btn-square btn-danger" style="margin: 5px">
+                                    <button onclick="salvar_curadoria(-1)" type="submit" class="btn btn-square btn-danger" style="margin: 5px">
                                         <i class="fa fa-times"></i> Inválido</button>
                                     <button onclick="proxima_frase()" type="submit" class="btn btn-square btn-info" style="margin: 5px">
                                         <i class="fa fa-forward"></i> Pular</button>
@@ -106,13 +106,44 @@
     <!-- Bootstrap js-->
     <script src="{{url_for('static', filename='assets/js/bootstrap/popper.min.js')}}"></script>
     <script src="{{url_for('static', filename='assets/js/bootstrap/bootstrap.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/notify/bootstrap-notify.min.js')}}" ></script>
 
     <script>
-        URL = "http://localhost:1452/api"
+        URL = "/api"
         curador = window.location.href.split('/').pop()
-        var frases, porcentagem, total_frases
+        var frases, porcentagem, total_frases, ponto
+        var total_curadas = 0
         var index = -1
 
+        function notificacao(mensagem, tipo){
+            $.notify({
+                title:'',
+                message: mensagem
+            },
+            {
+                type: tipo,
+                allow_dismiss:false,
+                newest_on_top:true ,
+                mouse_over:false,
+                showProgressbar:false,
+                spacing:10,
+                timer:1000,
+                placement:{
+                    from:'top',
+                    align:'right'
+                },
+                offset:{
+                    x:30,
+                    y:30
+                },
+                delay:2000 ,
+                z_index:10000,
+                animate:{
+                    enter:'animated fadeInRight',
+                    exit:'animated fadeOut'
+                }
+            });
+        }
 
         function loading(estado){
             if(estado == 0){
@@ -123,43 +154,81 @@
         }
 
         function grafico_p(){
-            $('#nome').html(frases[0]['curador'].toUpperCase() + ' <small id="porcentagem">' + porcentagem.toFixed(2) + '%</small>')
+            $('#nome').html(curador.toUpperCase() + ' <small id="porcentagem">' + porcentagem.toFixed(2) + '%</small>')
             cor = $('#barra_porcentagem').attr('cor')
             $('#barra_porcentagem').attr('aria-valuenow', porcentagem.toFixed(2))
             $('#barra_porcentagem').attr('style', 'width: ' + porcentagem.toFixed(2) + '%; background-color: ' + cor)
         }
 
+        function salvar_curadoria(valor){
+            $.ajax({
+                type: 'POST',
+                url: URL + '/curador/' + curador,
+                data: JSON.stringify({'_id': parseInt($('#frase').attr('value')), 'voto': valor}),
+                success: function(){
+                    frases.splice(index, 1)
+                    porcentagem += ponto
+                    notificacao('Curadoria salva com sucesso!', 'success')
+                    proxima_frase()
+                },
+                error: function(data, status){
+                    notificacao('Ocorreu um erro para salvar a curadoria!', 'danger')
+                },
+                contentType: "application/json"
+            })
+        }
+
         function proxima_frase(){
-            if(index < frases.length){
-                index++
+            index++
+
+            if(index >= frases.length){
+                index = 0
+            } 
+            
+            if (frases.length == 0){
+                buscar_frases()
+            } else {
                 $('#frase').text(frases[index].frase)
-                porcentagem += (index+1 / total_frases) / 100
-                grafico_p()
+                $('#frase').attr('value', frases[index]._id)
+                porcentagem += (total_curadas / total_frases) * 100
             }
+            grafico_p()
         }
 
         function buscar_frases(){
             loading(1)
-            console.log('TESTE')
-            $.get(URL + '/curador/' + curador,
-            function(data, status){
-                frases = data.results.frases
-                porcentagem = data.results.p_concluido
-                total_frases = data.results.total
+            $.ajax({
+                type: 'GET',
+                url: URL + '/curador/' + curador,
+                success: function(){
+                    frases = data.results.frases
+                    porcentagem = data.results.p_concluido
+                    total_frases = data.results.total
+                    ponto = (1 / total_frases) * 100
 
-                grafico_p()
-                proxima_frase()
-            });
+                    grafico_p()
+
+                    if(frases.length == 0){
+                        $('#frase').text('Parabéns, você terminou a curadoria!')
+                        $('#frase').attr('value', -1)
+                        $("button").hide()
+                    } else {
+                        proxima_frase()
+                    }
+                    
+                    loading(0)
+                },
+                error: function(data, status){
+                    loading(0)
+                    $("button").hide()
+                    notificacao('Ocorreu para buscar os dados!', 'danger')
+                },
+            })
         }
 
         $(document).ready(function(){
             buscar_frases()
-            loading(0)
         })
-
-        // $("button").click(function(){
-            
-        // })
     </script>
 
 
