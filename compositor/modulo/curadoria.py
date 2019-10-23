@@ -18,7 +18,7 @@ def lote_validacao(curador):
 
 
 def atualizar_frase(id_frase, curador, voto):
-    dados = {'status': voto}
+    dados = {'$set': {'status': voto}}
 
     if voto == 1:
         dados['$inc'] = {'votos': 1}
