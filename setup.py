@@ -31,6 +31,7 @@ setup(
     install_requires=[
         'flask==1.1.1',
         'loguru==0.3.2',
+        'pymongo==3.8.0',
         'flasgger==0.9.3',
         'gunicorn==19.9.0',
         'dnspython==1.16.0',
