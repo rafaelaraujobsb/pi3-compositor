@@ -1,16 +1,23 @@
-from setuptools import setup, find_packages
+import re
 from os import path
+from setuptools import setup, find_packages
 
-from compositor import __version__
 
 here = path.abspath(path.dirname(__file__))
+
+
+with open('./compositor/__init__.py', encoding='utf8') as version_f:
+    version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                              version_f.read(), re.M)
+    if version_match:
+        version = version_match.group(1)
 
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
     name='compositor',
-    version=__version__,
+    version=version,
     description='',
     long_description=long_description,
     long_description_content_type='text/markdown',
