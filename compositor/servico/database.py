@@ -120,7 +120,7 @@ class ModDatabase:
             `value` não precisa conter `$set`
         """
 
-        if '$push' not in value and '$inc' not in value:
+        if any(value.get, ['$inc', '$set']):
             value = {'$set': value}
 
         result = self.__db[collection].update_many(filter, value)
