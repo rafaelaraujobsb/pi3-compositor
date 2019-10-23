@@ -3,6 +3,7 @@ from time import time
 from loguru import logger
 from flasgger import Swagger
 from flask import Flask, request
+from flask_cors import CORS
 
 from compositor.rotas import api_bp
 from compositor.web import web_index
@@ -59,5 +60,7 @@ def criar_app():
     app.register_blueprint(api_bp, url_prefix='/api')
     setup_metrics(app)
     web_index(app)
+
+    CORS(app)
 
     return app
