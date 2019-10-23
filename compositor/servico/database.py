@@ -1,4 +1,5 @@
 import gridfs
+from bson import ObjectId
 from pymongo import MongoClient
 
 
@@ -8,14 +9,14 @@ class ModDatabase:
     """
     Módulo mongo
     """
-    def __init__(self, db, user=None, password=None, host='localhost', port=27017):
+    def __init__(self, db, user=None, password=None, host='localhost'):
         """
         Faz a conexão com o db.
         """
         if user:
-            self.__client = MongoClient(f'mongodb://{user}:{password}@{host}:{port}/{db}')
+            self.__client = MongoClient(f'mongodb+srv://{user}:{password}@{host}/{db}')
         else:
-            self.__client = MongoClient(f'mongodb://{host}:{port}/{db}')
+            self.__client = MongoClient(f'mongodb+srv://{host}:{port}/{db}')
 
         self.__db = self.__client.get_database()
         self.__fs = gridfs.GridFS(self.__db)
