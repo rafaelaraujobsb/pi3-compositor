@@ -200,7 +200,7 @@
             $.ajax({
                 type: 'GET',
                 url: URL + '/curador/' + curador,
-                success: function(){
+                success: function(data){
                     frases = data.results.frases
                     porcentagem = data.results.p_concluido
                     total_frases = data.results.total
