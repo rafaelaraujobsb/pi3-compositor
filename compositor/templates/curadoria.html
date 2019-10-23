@@ -164,7 +164,7 @@
             $.ajax({
                 type: 'POST',
                 url: URL + '/curador/' + curador,
-                data: JSON.stringify({'_id': parseInt($('#frase').attr('value')), 'voto': valor}),
+                data: JSON.stringify({'_id': parseInt($('#frase').attr('value')), 'voto': parseInt(valor)}),
                 success: function(){
                     frases.splice(index, 1)
                     porcentagem += ponto
