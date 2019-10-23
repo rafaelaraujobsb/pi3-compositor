@@ -7,9 +7,9 @@ from compositor.modulo.curadoria import atualizar_frase, lote_validacao
 
 class Curadoria(Resource):
     def get(self, curador):
-        p_concluido, frases = lote_validacao(curador)
+        p_concluido, frases, total = lote_validacao(curador)
         
-        return RespostaApi.resposta({'p_concluido': p_concluido, 'frases': frases})
+        return RespostaApi.resposta({'p_concluido': p_concluido, 'frases': frases, 'total': total})
 
 
     def post(self, curador):

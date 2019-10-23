@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages
 from os import path
 
+from compositor import __version__
+
 here = path.abspath(path.dirname(__file__))
 
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
@@ -8,7 +10,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='compositor',
-    version='0.1.0',
+    version=__version__,
     description='',
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -17,6 +19,8 @@ setup(
     author_email='',
     packages=find_packages(exclude=['docs', 'tests']),
     python_requires='>=3.6.*',
+    include_package_data=True,
+    zip_safe=False,
     install_requires=[
         'flask==1.1.1',
         'loguru==0.3.2',

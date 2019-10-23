@@ -9,7 +9,7 @@ from compositor.rotas import api_bp
 from compositor.web import web_index
 
 
-__version__ = '0.1.0'
+__version__ = '0.3.0'
 
 
 logger.add("compositor.log", level='INFO', rotation="500 MB")

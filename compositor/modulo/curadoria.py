@@ -7,7 +7,7 @@ def lote_validacao(curador):
     qtd = db.get_document('curador', {'_id': curador}, {'_id': 0})[0]
     prc_feito = (qtd['curado'] / qtd['curar']) / 100
 
-    return prc_feito, frases
+    return prc_feito, frases, qtd['curar']
 
 
 def atualizar_frase(id_frase, curador, voto):
