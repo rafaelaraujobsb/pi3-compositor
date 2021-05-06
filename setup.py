@@ -35,7 +35,7 @@ setup(
         'flasgger==0.9.3',
         'gunicorn==19.9.0',
         'dnspython==1.16.0',
-        'flask-cors==3.0.8',
+        'flask-cors==3.0.9',
         'jsonschema==2.6.0',
         'flask_restful==0.3.7',
     ],
